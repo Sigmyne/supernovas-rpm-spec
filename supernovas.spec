@@ -1,7 +1,7 @@
-%global upstream_version     1.5.1
+%global upstream_version     1.6.0-rc3
 
 Name:            supernovas
-Version:         1.5.1
+Version:         1.6.0~rc3
 Release:         %autorelease
 Summary:         The Naval Observatory's NOVAS C astronomy library, made better 
 License:         Unlicense
@@ -13,6 +13,7 @@ ExcludeArch:     %{ix86}
 
 BuildRequires:   calceph-devel%{_isa} >= 4.0.0
 BuildRequires:   gcc
+BuildRequires:   gcc-c++
 BuildRequires:   cmake
 BuildRequires:   doxygen >= 1.13.0
 
@@ -35,10 +36,17 @@ retaining 100 percent API compatibility with NOVAS C 3.1. Thus, if you have
 written code for NOVAS C 3.1, you can build it with SuperNOVAS also.
 
 SuperNOVAS is entirely free to use without licensing restrictions. Its source 
-code is compatible with the C90 standard, and hence should be suitable for old 
+code is compatible with the C99 standard, and hence should be suitable for old 
 and new platforms alike. It is light-weight and easy to use, with full support 
 for the IAU 2000/2006 standards for sub-micro-arc-second position 
 calculations.
+
+%package c++
+Summary: C++ runtime library
+Requires:        %{name}%{?_isa} = %{version}-%{release}
+
+%description c++
+Optional runtime library providing a high-level C++ interface to SuperNOVAS.
  
 %package solsys-calceph
 Summary: Solar-system plugin based on the CALCEPH C library
@@ -55,6 +63,7 @@ development, which requires use of precise Solar-system data.
 %package devel
 Summary:         C development files for the SuperNOVAS C/C++ astronomy library
 Requires:        %{name}%{?_isa} = %{version}-%{release}
+Requires:        %{name}-c++ = %{version}-%{release}
 Requires:        %{name}-solsys-calceph%{?_isa} = %{version}-%{release}
 Obsoletes:       %{name}-solsys1 < %{version}-%{release} 
 Obsoletes:       %{name}-solsys2 < %{version}-%{release} 
@@ -80,6 +89,7 @@ templates for the SuperNOVAS C/C++ astronomy library.
 %cmake \
     -DBUILD_SHARED_LIBS=ON \
     -DBUILD_DOC=ON \
+    -DENABLE_CPP=ON \
     -DENABLE_CALCEPH=ON 
 
 %cmake_build
@@ -88,12 +98,16 @@ templates for the SuperNOVAS C/C++ astronomy library.
 %cmake_install
 
 %check
-%ctest
+#%ctest
+make test
 
 %files
 %license LICENSE
 %doc CHANGELOG.md
 %{_libdir}/libsupernovas.so.1{,.*}
+
+%files c++
+%{_libdir}/libsupernovas++.so.1{,.*}
 
 %files solsys-calceph
 %{_libdir}/libsolsys-calceph.so.1{,.*}
@@ -110,7 +124,7 @@ templates for the SuperNOVAS C/C++ astronomy library.
 %files doc
 %license LICENSE
 %dir %{_docdir}/%{name}
-%doc %{_docdir}/%{name}/supernovas.tag
+%doc %{_docdir}/%{name}/*.tag
 %doc %{_docdir}/%{name}/html
 
 %changelog
