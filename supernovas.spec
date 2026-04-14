@@ -1,7 +1,7 @@
-%global upstream_version     1.6.0-rc3
+%global upstream_version     1.6.0-rc4
 
 Name:            supernovas
-Version:         1.6.0~rc3
+Version:         1.6.0~rc4
 Release:         %autorelease
 Summary:         The Naval Observatory's NOVAS C astronomy library, made better 
 License:         Unlicense
@@ -98,8 +98,7 @@ templates for the SuperNOVAS C/C++ astronomy library.
 %cmake_install
 
 %check
-#%ctest
-make test
+%ctest
 
 %files
 %license LICENSE
