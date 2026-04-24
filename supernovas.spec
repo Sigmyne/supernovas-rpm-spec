@@ -1,7 +1,7 @@
-%global upstream_version     1.6.0-rc5
+%global upstream_version     1.6.0-rc6
 
 Name:            supernovas
-Version:         1.6.0~rc5
+Version:         1.6.0~rc6
 Release:         %autorelease
 Summary:         The Naval Observatory's NOVAS C astronomy library, made better 
 License:         Unlicense
@@ -26,9 +26,9 @@ Suggests:        %{name}-solsys-calceph = %{version}-%{release}
 
 SuperNOVAS is a C/C++ astronomy library, providing high-precision astronomical 
 calculations such as one might need for running an observatory or a precise 
-planetarium program. It is a fork of the Naval Observatory Vector Astrometry 
-Software (NOVAS) C version 3.1, providing bug fixes and making it easier to 
-use overall.
+planetarium program. It is a supercharged fork of the Naval Observatory Vector 
+Astrometry Software (NOVAS) C version 3.1, providing bug fixes and making it 
+easier to use overall.
 
 The main goals of SuperNOVAS are to improve usability, add new features, 
 promote best practices, and provide accessible documentation -- all while 
@@ -36,17 +36,17 @@ retaining 100 percent API compatibility with NOVAS C 3.1. Thus, if you have
 written code for NOVAS C 3.1, you can build it with SuperNOVAS also.
 
 SuperNOVAS is entirely free to use without licensing restrictions. Its source 
-code is compatible with the C99 standard, and hence should be suitable for old 
-and new platforms alike. It is light-weight and easy to use, with full support 
-for the IAU 2000/2006 standards for sub-micro-arc-second position 
+code is compatible with the C99 and C++11 standards, and hence suitable for 
+old and new platforms alike. It is light-weight and easy to use, with full 
+support for the IAU 2000/2006 standards for sub-micro-arc-second position 
 calculations.
 
 %package c++
-Summary: C++ runtime library
+Summary: C++ API extension runtime library
 Requires:        %{name}%{?_isa} = %{version}-%{release}
 
 %description c++
-Optional runtime library providing a high-level C++ interface to SuperNOVAS.
+Optional runtime library providing a high-level C++ extension to SuperNOVAS.
  
 %package solsys-calceph
 Summary: Solar-system plugin based on the CALCEPH C library
@@ -57,7 +57,7 @@ Requires:        calceph-libs%{?_isa} >= 4.0.0
 Optional SuperNOVAS plugin library that provides Solar-system support via the 
 CALCEPH C library. It allows using both JPL (SPK) and INPOP 2.0/3.0 data files 
 with SuperNOVAS to obtain precise locations for Solar-system bodies. This 
-plugin is currently the preferred option to use for Fedora / RPM Linux 
+plugin adapter is currently the preferred option to use for Fedora / RPM Linux 
 development, which requires use of precise Solar-system data.
 
 %package devel
@@ -69,10 +69,8 @@ Obsoletes:       %{name}-solsys1 < %{version}-%{release}
 Obsoletes:       %{name}-solsys2 < %{version}-%{release} 
 
 %description devel
-This sub-package provides C headers and non-versioned shared library symbolic 
-links for the SuperNOVAS C/C++ library. It also provides a default FORTRAN
-adapter module (as documentation) that may be used as is, or modified as 
-needed, for the the JPL PLEPH module.
+This sub-package provides headers and non-versioned shared library symbolic 
+links for SuperNOVAS.
 
 %package doc
 Summary:         Documentation for the SuperNOVAS C/C++ astronomy library
