@@ -1,7 +1,7 @@
-%global upstream_version     1.6.0-rc6
+%global upstream_version     1.6.0
 
 Name:            supernovas
-Version:         1.6.0~rc6
+Version:         1.6.0
 Release:         %autorelease
 Summary:         The Naval Observatory's NOVAS C astronomy library, made better 
 License:         Unlicense
