@@ -1,7 +1,7 @@
-%global upstream_version     1.6.0
+%global upstream_version     1.7.0-rc1
 
 Name:            supernovas
-Version:         1.6.0
+Version:         1.7.0~rc1
 Release:         %autorelease
 Summary:         The Naval Observatory's NOVAS C astronomy library, made better 
 License:         Unlicense
@@ -15,6 +15,7 @@ BuildRequires:   calceph-devel%{_isa} >= 4.0.0
 BuildRequires:   gcc
 BuildRequires:   gcc-c++
 BuildRequires:   cmake
+BuildRequires:   libcurl-devel
 BuildRequires:   doxygen >= 1.13.0
 
 # Starting with v1.5.0, we no longer need or package cio-data
@@ -62,6 +63,7 @@ development, which requires use of precise Solar-system data.
 
 %package devel
 Summary:         C development files for the SuperNOVAS C/C++ astronomy library
+Requires:        lubcurl-devel%{?_isa}
 Requires:        %{name}%{?_isa} = %{version}-%{release}
 Requires:        %{name}-c++ = %{version}-%{release}
 Requires:        %{name}-solsys-calceph%{?_isa} = %{version}-%{release}
