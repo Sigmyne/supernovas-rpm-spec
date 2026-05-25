@@ -17,6 +17,7 @@ BuildRequires:   gcc-c++
 BuildRequires:   cmake
 BuildRequires:   libcurl-devel
 BuildRequires:   doxygen >= 1.13.0
+BuildRequires:   fdupes
 
 # Starting with v1.5.0, we no longer need or package cio-data
 Obsoletes:       %{name}-cio-data < %{version}-%{release} 
@@ -96,6 +97,8 @@ templates for the SuperNOVAS C/C++ astronomy library.
 
 %install
 %cmake_install
+
+hardlink %{_docdir}/%{name}/html
 
 %check
 %ctest
